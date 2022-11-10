@@ -11,11 +11,11 @@ public class PID_controller : MonoBehaviour
     public float[] error = new float[2];
     const float dt = 1f / 60f;
 
-    public float PID(float goal_pos, float feedback_pos, float initial_veloticy, float KP, float KI, float KD)
+    public float PID(float goal_rotation, float feedback_feedback, float initial_wheelchair_veloticy, float KP, float KI, float KD)
     {
         if (initialize == true)
         {
-            linear = initial_veloticy;
+            linear = initial_wheelchair_veloticy;
             initialize = false;
         }
         error[0] = error[1];
