@@ -1,0 +1,32 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PID_controller : MonoBehaviour
+{
+    bool initialize = true;
+
+    float P, I, D, preP;
+    float linear;
+    public float[] error = new float[2];
+    const float dt = 1f / 60f;
+
+    public float PID(float goal_pos, float feedback_pos, float initial_veloticy, float KP, float KI, float KD)
+    {
+        if (initialize == true)
+        {
+            linear = initial_veloticy;
+            initialize = false;
+        }
+        error[0] = error[1];
+        error[1] = (goal_pos) - (feedback_pos);
+        //P controller
+        P = KP * error[1];
+        I = KI * (error[1] * dt);
+        D = KD * (P - preP) / dt;
+        preP = P;
+        linear += P + I + D;
+        return linear;
+    }
+
+}
