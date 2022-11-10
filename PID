@@ -19,7 +19,7 @@ public class PID_controller : MonoBehaviour
             initialize = false;
         }
         error[0] = error[1];
-        error[1] = (goal_pos) - (feedback_pos);
+        error[1] = (goal_rotation) - (feedback_rotation);
         //P controller
         P = KP * error[1];
         I = KI * (error[1] * dt);
